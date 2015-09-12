@@ -60,7 +60,8 @@ function render(question, inputSequence, fakeData) {
   ctx.fill();
   
   function createFontName(size) {
-    return size + "px \"Comic Sans MS\", cursive, sans-serif";
+    return size + "px \"Comic Sans MS\", \"Comic Sans\", \"comic_reliefregular\", cursive, sans-serif";
+    //return size + "px \"Comic Sans MS\", \"Comic Sans\", cursive, sans-serif";
   }
   var halfWidth = ctx.canvas.width / 2;
   
