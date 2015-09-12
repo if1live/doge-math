@@ -6,8 +6,12 @@
     <title>Doge Math</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link rel="stylesheet/css" href="./index.css"/>
+
+    <link rel="shortcut icon" href="http://libsora.so/favicon.ico" type="image/x-icon" />
+        
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./index.css"/>
     
     <!-- twitter card -->
     <meta name="twitter:card" content="summary">
@@ -30,30 +34,111 @@
     
   </head>
   <body>
-    <form id="form-data">
-      question : <input type="text" name="question" value="Find the next number of the sequence"/><br/>
-      number 1 : <input type="number" name="val_1" value="1"/><br/>
-      number 2 : <input type="number" name="val_2" value="3"/><br/>
-      number 3 : <input type="number" name="val_3" value="5"/><br/>
-      number 4 : <input type="number" name="val_4" value="7"/><br/>
-      fake data : <input type="number" name="fake_data" value="217331"/><br/>
-      <input type="submit" value="Generate" onclick="updateCanvas(); return false;"/><br/>
-    </form>
-    <div>
-      <a id="dl" download="doge-math.png" href="#">Download PNG</a>
-    </div>
-    <canvas id="myCanvas" width="540" height="1080" style="border:1px solid #000000;">
-    </canvas>
-
-    <!-- script -->
-    <script>
-      // for complex.js
-      module = {};
-    </script>
+    <header class="base-header">
+      <h1><a href="http://libsora.so/doge-math/">Doge Math</a></h1>
+      <nav>
+        <ul class="nav-link-list">
+          <li>
+            <a href="https://twitter.com/if1live">
+            <i class="fa fa-twitter"><span hidden>@if1live</span></i>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/if1live/doge-math">
+            <i class="fa fa-github"><span hidden>Repository</span></i>
+            </a>
+          </li>
+          <li>
+            <a href="http://libsora.so">
+            <i class="fa fa-home"><span hidden>Home</span></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
     
+    <p class="content content-center">
+      You do the math!<br/> Find the next number of the sequence
+    </p>
+    <form id="form-data"  class="pure-form pure-form-aligned content">
+      <fieldset>
+        <div class="pure-control-group">
+          <label for="question">Question</label>
+          <input type="text" name="question" value="Find the next number of the sequence"/>
+        </div>
+        
+        <div class="pure-control-group">
+          <label for="val_1">Number 1</label>
+          <input type="number" name="val_1" value="1"/>
+        </div>
+      
+        <div class="pure-control-group">
+          <label for="val_2">Number 2</label>
+          <input type="number" name="val_2" value="3"/>
+        </div>
+      
+        <div class="pure-control-group">
+          <label for="val_3">Number 3</label>
+          <input type="number" name="val_3" value="5"/>
+        </div>
+      
+        <div class="pure-control-group">
+          <label for="val_4">Number 4</label>
+          <input type="number" name="val_4" value="7"/>
+        </div>
+      
+        <div class="pure-control-group">
+          <label for="fake_data">Fake data</label>
+          <input type="number" name="fake_data" value="217331"/><br/>
+        </div>
+      
+        <div class="pure-controls">
+          <button type="submit" class="pure-button pure-button-primary"
+            onclick="updateCanvas(); return false;">
+            <i class="fa fa-refresh"></i>
+            Generate
+          </button>
+          
+          <a id="dl" class="pure-button" download="doge-math.png" href="#">
+            <i class="fa fa-download"></i>
+            Download PNG
+          </a>
+          
+          <button id="btn-copy-url" type="button" class="pure-button">
+            <i class="fa fa-files-o"></i>
+            Copy URL
+          </button>
+        </div>
+      </fieldset>
+    </form>
+    
+    <div class="content content-center">
+      <canvas id="myCanvas" width="540" height="1080" style="border:1px solid #000000;">
+      </canvas>
+    </div>
+    
+    <div class="content content-center">
+      <h3>URL</h3>
+      <span id="text-url">http://libsora.so/doge-math/</span>
+    </div>
+    
+    <footer class="footer">
+      <p>
+        <a href="https://twitter.com/if1live">@if1live</a> |
+        <a href="https://github.com/if1live/doge-math">Repository</a> |
+        <a href="http://libsora.so">Home</a>
+      </p>
+    </footer>
+
     <!-- libs -->
+    <!--
     <script src="./libs/underscore.js"></script>
     <script src="./libs/fraction.js"></script>
+    -->
+    <!-- optimized js libs -->
+    <script src="./libs/underscore-min.js"></script>
+    <script src="./libs/fraction.min.js"></script>
+    
     <!-- https://gist.github.com/axelpale/3118596 -->
     <script src="./libs/combinations.js"></script>
     

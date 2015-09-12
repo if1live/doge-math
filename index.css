@@ -1,0 +1,62 @@
+/* sora theme */
+.nav-link-list {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+.nav-link-list li {
+  display: inline-block;
+}
+.nav-link-list a {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  margin: 0.5em;
+  border: 1px solid #FFF;
+  background-color: #4983BC;
+  color: #FFF;
+}
+
+.base-header {
+  background-image: linear-gradient(to bottom, #357DAF 0%, #61B4D7 100%);
+  background-repeat: repeat-x;
+  padding: 1em 0px 0.5em;
+  margin-bottom: 10px;
+  color: #EEE;
+}
+.base-header h1 {
+  margin: 0px;
+  padding-bottom: 0.5em;
+  text-align: center;
+  line-height: 18px;
+  font-size: 2em;
+}
+.base-header h1 a {
+  font-size: 18px;
+  color: #FFF;
+  text-align: center;
+  text-decoration: none;
+}
+
+.footer {
+  background-color: #61B4D7;
+  box-shadow: 0px 10000px 0px 10000px #61B4D7;
+  padding: 0.5em 0px 1em;
+  text-align: center;
+  margin-top: 10px;
+  color: #EEE;
+}
+
+.footer a, .footer a:visited {
+  text-decoration: none;
+  color: #FFF;
+}
+
+/* custom css */
+.content {
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.content-center {
+  text-align: center;
+}

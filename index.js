@@ -166,6 +166,13 @@ function render(question, inputSequence, fakeData) {
   renderDecoration(ctx);
 }
 
+function getParameterByName(name) {
+  //http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 //http://stackoverflow.com/questions/12796513/html5-canvas-to-png-file
 function dlCanvas() {
@@ -179,6 +186,37 @@ function dlCanvas() {
 };
 document.getElementById("dl").addEventListener('click', dlCanvas, false);
 
+document.getElementById("btn-copy-url").onclick = function() {
+  // http://stackoverflow.com/questions/10729570/html5-alternative-to-flash-based-zeroclipboard-for-safe-copying-of-data-to-clipb
+  var form = document.getElementById("form-data");
+  var url = getUrl(form);
+  var copyElement = document.createElement('input');
+  copyElement.setAttribute('type', 'text');
+  copyElement.setAttribute('value', url);
+  copyElement = document.body.appendChild(copyElement);
+  copyElement.select();
+  document.execCommand('copy');
+  copyElement.remove();
+};
+
+function getUrl(form) {
+  var fieldList = [
+    "question",
+    "val_1",
+    "val_2",
+    "val_3",
+    "val_4",
+    "fake_data"
+  ];
+  var queryList = _.map(fieldList, function(field) {
+    var value = form[field].value;
+    return field + "=" + encodeURIComponent(value);
+  })
+  var query = queryList.join("&");
+  var baseHost = "http://libsora.so/doge-math/"
+  var url = baseHost + "?" + query;
+  return url;
+}
 
 // main function
 function updateCanvas() {
@@ -201,10 +239,11 @@ function updateCanvas() {
   });
   var fakeData = [0, parseInt(form.fake_data.value, 10)];
   var question = form.question.value;
-  render(question, inputSequence, fakeData); 
+  render(question, inputSequence, fakeData);
+  
+  var url = getUrl(form);
+  document.getElementById("text-url").innerHTML = url;
 }
-
-updateCanvas();
 
 // update mime if value changed
 (function() {
@@ -221,4 +260,15 @@ updateCanvas();
     var el = form[field];
     el.onchange = updateCanvas;
   });
+  
+  // fill get query
+  if(location.search.length > 0) {
+    _.each(fieldList, function(field) {
+      var el = form[field];
+      var val = getParameterByName(field)
+      el.value = decodeURIComponent(val);
+    });
+  }
+  
+  updateCanvas();
 })();
