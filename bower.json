@@ -1,0 +1,8 @@
+{
+  "name": "doge-math",
+  "dependencies": {
+    "fontawesome": "*",
+    "underscore": "*",
+    "pure": "*"
+  }
+}

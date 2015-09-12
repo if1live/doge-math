@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - "iojs"
+
+sudo: false
+
+before_script:
+  - npm install -g bower
+  - npm install -g grunt-cli
+  - npm install
+  - bower install
+
+script:
+  - grunt
+
+notifications:
+  - email: false

@@ -128,6 +128,8 @@ function render(question, inputSequence, fakeData) {
     });
     
     
+    
+    
     var targetX = inputSequence[inputSequence.length-1][0] + 1;
     var solution = calculateFunnySolutionWithCoef(coef, targetX);
     console.log("real solution : " + solution);
@@ -184,6 +186,10 @@ function getParameterByName(name) {
       results = regex.exec(location.search);
   return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
+// http://stackoverflow.com/questions/6209161/extract-the-current-dom-and-print-it-as-a-string-with-styles-intact
+// Element.prototype.serializeWithStyles = (function () { ...
+// not use  
 
 //http://stackoverflow.com/questions/12796513/html5-canvas-to-png-file
 function dlCanvas() {
@@ -294,7 +300,7 @@ twttr.ready(function (twttr) {
   
   twttr.widgets.createShareButton(
     url,
-    document.getElementById('container'),
+    document.getElementById('twitter-container'),
     {
       text: "Doge Math - " + question
     }

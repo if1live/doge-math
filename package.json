@@ -1,0 +1,16 @@
+{
+  "name": "doge-math",
+  "description": "Doge Math",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/if1live/doge-math.git"
+  },
+  "dependencies": {
+    "bower": "*",
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-bower-task": "*",
+    "grunt-bowercopy": "*",
+    "mocha": "*"
+  }
+}
