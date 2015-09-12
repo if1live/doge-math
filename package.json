@@ -11,6 +11,7 @@
     "grunt-cli": "*",
     "grunt-bower-task": "*",
     "grunt-bowercopy": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "http-server": "*"
   }
 }

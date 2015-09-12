@@ -117,6 +117,121 @@ function render(question, inputSequence, fakeData) {
     //TODO ?는 다른 색으로?
   }
   
+  function renderPolynomial(ctx, coef, baseX, baseY, virtual) {
+    var eqY = baseY;
+    var eqX = baseX;
+    var normalFontSize = 18;
+    var supFontSize = 10;
+    
+    // set basic config
+    ctx.fillStyle = "#000000";
+    ctx.font = createFontName(normalFontSize);
+    ctx.textAlign = "left";
+    
+    // start equation
+    if(!virtual) {
+      ctx.fillText("f(x) = ", eqX, eqY);
+    }
+    eqX += ctx.measureText("f(x) = ").width;
+    
+    
+    var variableWidth = ctx.measureText("x").width;
+    
+    var reverseCoef = _.map(coef, function(x) { return x; });
+    reverseCoef.reverse();
+    _.each(reverseCoef, function(x, idx) {
+      var order = reverseCoef.length - idx - 1;
+      
+      // no coef -> no rendering
+      if(x.n == 0) {
+        return;
+      }
+      
+      // handle sign
+      var sign = '';
+      if(idx == 0) {
+        if(x.s < 0) {
+          sign = '-';
+        }
+      } else {
+        if(x.s < 0) {
+          sign = '-';
+        } else {
+          sign = '+';
+        }
+      }
+      if(sign !== "") {
+        if(!virtual) {
+          ctx.fillText(sign, eqX, eqY);
+        }
+        eqX += ctx.measureText(sign).width;
+      }
+      
+      if(x.d == 1) {
+        // handle coef (number)
+        if(!virtual) {
+          ctx.fillText(x.n, eqX, eqY);
+        }
+        eqX += ctx.measureText(x.n).width;
+        
+      } else {
+        // handle coef (fraction)
+        var dWidth = ctx.measureText(x.d).width;
+        var nWidth = ctx.measureText(x.n).width;
+        
+        var numWidth = (dWidth > nWidth) ? dWidth : nWidth;
+        var nX = eqX + numWidth / 2 - nWidth / 2;
+        if(!virtual) {
+          ctx.fillText(x.n, nX, eqY - normalFontSize + 5);
+        }
+        
+        var dX = eqX + numWidth / 2 - dWidth / 2;
+        if(!virtual) {
+          ctx.fillText(x.d, dX, eqY + normalFontSize - 5);
+        }
+        
+        var fractionLineY = eqY - normalFontSize / 3;
+        if(!virtual) {
+          ctx.beginPath();
+          ctx.strokeStyle = "#000000";
+          ctx.lineWidth = "2";
+          ctx.moveTo(eqX, fractionLineY);
+          ctx.lineTo(eqX + numWidth, fractionLineY);
+          ctx.stroke();
+        }
+      
+        eqX += numWidth;
+      }
+      
+      // handle x ** order
+      if(order !== 0) {
+        if(!virtual) {
+          ctx.fillText('x', eqX, eqY);
+        }
+        eqX += variableWidth;
+        
+        if(order > 1) {
+          // render sup
+          var supHeight = ctx.measureText(order).width;
+          
+          ctx.font = createFontName(supFontSize);
+          if(!virtual) {
+            ctx.fillText(order, eqX, eqY - supHeight / 2 - 3);
+          }
+          eqX += ctx.measureText(order).width;
+          
+          // restore state
+          ctx.font = createFontName(normalFontSize);
+        }
+      }
+    });
+
+    ctx.textAlign = "center";
+    
+    // eqX = width;
+    return eqX;
+  }
+  
   function renderAnswer(ctx, inputSequence, fakeData) {
     var baseY = 400;
     
@@ -127,8 +242,8 @@ function render(question, inputSequence, fakeData) {
       console.log(idx + " : " + x.s * x.n + "/" + x.d);
     });
     
-    
-    
+    var polyWidth = renderPolynomial(ctx, coef, 0, 0, true);
+    renderPolynomial(ctx, coef, halfWidth - polyWidth/2, baseY + 210, false);
     
     var targetX = inputSequence[inputSequence.length-1][0] + 1;
     var solution = calculateFunnySolutionWithCoef(coef, targetX);
