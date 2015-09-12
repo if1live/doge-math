@@ -283,3 +283,20 @@ function updateCanvas() {
   
   updateCanvas();
 })();
+
+
+twttr.ready(function (twttr) {
+  //var form = document.getElementById("form-data");
+  //var url = getUrl(form);
+  //var question = form.question.value;
+  var url = "http://libsora.so/doge-math/";
+  var question = "Find the next number of the sequence";
+  
+  twttr.widgets.createShareButton(
+    url,
+    document.getElementById('container'),
+    {
+      text: "Doge Math - " + question
+    }
+  );
+});
