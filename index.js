@@ -51,7 +51,7 @@ function calculateFunnySolutionWithCoef(coefSeq, x) {
   return retval;
 }
 
-function render(inputSequence, fakeData) {
+function render(question, inputSequence, fakeData) {
   var c = document.getElementById("myCanvas");
   var ctx = c.getContext("2d");
   ctx.rect(0, 0, 540, 1080);
@@ -75,7 +75,7 @@ function render(inputSequence, fakeData) {
     ctx.fillText("very logic", halfWidth + 150, baseY + 80);
     
     ctx.fillStyle = "#0008F1";
-    ctx.fillText("wow", halfWidth + 20, baseY + 100);
+    ctx.fillText("wow", halfWidth + 60, baseY + 120);
     
     baseY += 270;
     ctx.fillStyle = "#FFFF00";
@@ -88,12 +88,12 @@ function render(inputSequence, fakeData) {
     ctx.fillText("wow", halfWidth + 10, baseY + 100);  
   }
   
-  function renderQuestion(ctx, inputSequence) {
+  function renderQuestion(ctx, inputSequence, question) {
     var baseY = 50;
     
     ctx.fillStyle = "#000000";
     ctx.font = createFontName(25);
-    ctx.fillText("Find the next number of the sequence", halfWidth, baseY + 0);
+    ctx.fillText(question, halfWidth, baseY + 0);
     
     ctx.fillStyle = "#000000";
     ctx.font = createFontName(60);
@@ -161,7 +161,7 @@ function render(inputSequence, fakeData) {
     ctx.stroke();
   }
   
-  renderQuestion(ctx, inputSequence);
+  renderQuestion(ctx, inputSequence, question);
   renderAnswer(ctx, inputSequence, fakeData);
   renderDecoration(ctx);
 }
@@ -183,13 +183,42 @@ document.getElementById("dl").addEventListener('click', dlCanvas, false);
 // main function
 function updateCanvas() {
   var form = document.getElementById("form-data");
-  var inputSequence = [
-    [1, parseInt(form.val_1.value, 10)], 
-    [2, parseInt(form.val_2.value, 10)],
-    [3, parseInt(form.val_3.value, 10)],
-    [4, parseInt(form.val_4.value, 10)]
+  var inputSequence = [];
+  var idx = 1;
+  var fieldList = [
+    "val_1",
+    "val_2",
+    "val_3",
+    "val_4"
   ];
+  _.each(fieldList, function(field) {
+    var val = parseInt(form[field].value, 10);
+    if(isNaN(val)) {
+      return;
+    }
+    inputSequence.push([idx, val]);
+    idx += 1;
+  });
   var fakeData = [0, parseInt(form.fake_data.value, 10)];
-  render(inputSequence, fakeData); 
+  var question = form.question.value;
+  render(question, inputSequence, fakeData); 
 }
+
 updateCanvas();
+
+// update mime if value changed
+(function() {
+  var form = document.getElementById("form-data");
+  var fieldList = [
+    "question",
+    "val_1",
+    "val_2",
+    "val_3",
+    "val_4",
+    "fake_data"
+  ];
+  _.each(fieldList, function(field) {
+    var el = form[field];
+    el.onchange = updateCanvas;
+  });
+})();
