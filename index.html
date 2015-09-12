@@ -1,10 +1,33 @@
 <!doctype html>
-<html lang="ko">
+<html class="no-js" lang="ko">
   <head>
     <meta charset="utf-8">
-    <title>doge-math</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Doge Math</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet/css" href="./index.css"/>
+    
+    <!-- twitter card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@if1live">
+    <meta name="twitter:title" content="Doge Math"/>
+    <meta name="twitter:url" content="http://libsora.so/doge-math/">
+    <meta name="twitter:description" content="You do the math! Find the next number of the sequence"/>
+    <meta name="twitter:image" content="http://libsora.so/doge-math/assets/icon.png"/>
+    
+    <!-- facebook open graph -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Doge Math"/>
+    <meta property="og:site_name" content="Doge Math"/>
+    <meta property="og:image" content="http://libsora.so/doge-math/assets/icon.png"/>
+    <meta property="og:url" content="http://libsora.so/doge-math/">
+    <meta property="article:author" content="http://libsora.so/" />
+    <link rel="author" href="http://libsora.so/" />
+    <meta property="og:description" content="You do the math! Find the next number of the sequence"/>
+    <!-- <meta content="TODO" property="article:published_time"> -->
+    
   </head>
   <body>
     <form id="form-data">
@@ -33,6 +56,16 @@
     <!-- https://gist.github.com/axelpale/3118596 -->
     <script src="./libs/combinations.js"></script>
     
-    <script src="./index.js"></script> 
+    <script src="./index.js"></script>
+    
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-37862172-2','auto');ga('send','pageview');
+    </script>
   </body>
 </html>
