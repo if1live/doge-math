@@ -86,7 +86,17 @@ function render(question, inputSequence, fakeData) {
     ctx.fillText("many maths", halfWidth - 110, baseY + 50);
     
     ctx.fillStyle = "#0008F1";
-    ctx.fillText("wow", halfWidth + 10, baseY + 100);  
+    ctx.fillText("wow", halfWidth + 10, baseY + 100);
+    
+    // image
+    var imageObj = new Image();
+    imageObj.onload = function() {
+      var w = 500;
+      var h = 646;
+      var scale = 1.7;
+      ctx.drawImage(imageObj, 290, 860, w/scale, h/scale);
+    };
+    imageObj.src = './assets/doge.png';
   }
   
   function renderQuestion(ctx, inputSequence, question) {
