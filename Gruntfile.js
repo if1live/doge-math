@@ -15,11 +15,13 @@ module.exports = function (grunt) {
             'underscore/*.js',
             'underscore/*.map',
             'mocha/*.js',
+            'katex/dist/*.js'
           ],
           'publish/libs/css': [
             'fontawesome/css/*.css',
             'pure/*.css',
-            'mocha/mocha.css'
+            'mocha/mocha.css',
+            'katex/dist/*.css'
           ],
           'publish/libs/fonts': [
             'fontawesome/fonts/*'

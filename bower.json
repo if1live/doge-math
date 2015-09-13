@@ -3,6 +3,7 @@
   "dependencies": {
     "fontawesome": "*",
     "underscore": "*",
-    "pure": "*"
+    "pure": "*",
+    "katex": "*"
   }
 }

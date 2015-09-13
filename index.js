@@ -302,10 +302,6 @@ function getParameterByName(name) {
   return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-// http://stackoverflow.com/questions/6209161/extract-the-current-dom-and-print-it-as-a-string-with-styles-intact
-// Element.prototype.serializeWithStyles = (function () { ...
-// not use  
-
 //http://stackoverflow.com/questions/12796513/html5-canvas-to-png-file
 function dlCanvas() {
   var canvas = document.getElementById("myCanvas");
