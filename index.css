@@ -62,6 +62,12 @@
   color: #FFF;
 }
 
+canvas {
+  width: 540px;
+  height: auto;
+  max-width: 100%;
+}
+
 /* custom css */
 .content {
   max-width: 768px;
